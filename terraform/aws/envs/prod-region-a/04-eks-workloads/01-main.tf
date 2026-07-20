@@ -15,6 +15,10 @@ provider "helm" {
   }
 }
 
+provider "aws" {
+  region = "ap-northeast-2"
+}
+
 data "aws_eks_cluster" "cluster" {
   name = "hello-eks"
 }

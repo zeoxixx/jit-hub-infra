@@ -3,7 +3,7 @@
 
 ingressRule:
   namespace: "jit-hub"
-  host: "leechs.shop" # 필요시 eks-a 전용 도메인으로 변경 가능
+  host: "zeoxixx.cloud" # 필요시 eks-a 전용 도메인으로 변경 가능
 
 gateway:
   replicaCount: 1
