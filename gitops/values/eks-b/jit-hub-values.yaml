@@ -5,20 +5,20 @@ gateway:
 auth:
   replicaCount: 1
   db:
-    enabled: false
+    enabled: true
     host: "postgres-gateway"
 weather:
   replicaCount: 1
   db:
-    enabled: false
+    enabled: true
     host: "postgres-gateway"
 traffic:
   replicaCount: 1
   db:
-    enabled: false
+    enabled: true
     host: "postgres-gateway"
 tourist:
   replicaCount: 1
   db:
-    enabled: false
+    enabled: true
     host: "postgres-gateway"

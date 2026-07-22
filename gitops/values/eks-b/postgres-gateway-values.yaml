@@ -1,2 +1,2 @@
 # DR 테스트 전에는 gateway를 만들지 않습니다. EKS-B JIT 전환 시 true로 변경합니다.
-enabled: false
+enabled: true
