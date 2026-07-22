@@ -1,0 +1,37 @@
+2026-07-22T15:25:23+09:00 [20260722-152523] [switch-to-onprem] [INFO] EKS-A → 온프레미스 긴급 트래픽 전환 시작
+2026-07-22T15:25:23+09:00 [20260722-152523] [switch-to-onprem] [INFO] STEP_START step=check_context target=eks-a
+2026-07-22T15:25:23+09:00 [20260722-152523] [switch-to-onprem] [INFO] STEP_SUCCESS step=check_context target=eks-a duration=0s
+2026-07-22T15:25:23+09:00 [20260722-152523] [switch-to-onprem] [INFO] STEP_START step=check_context target=kubernetes-admin@kubernetes
+2026-07-22T15:25:23+09:00 [20260722-152523] [switch-to-onprem] [INFO] STEP_SUCCESS step=check_context target=kubernetes-admin@kubernetes duration=0s
+2026-07-22T15:25:23+09:00 [20260722-152523] [switch-to-onprem] [INFO] STEP_START step=check_onprem_cluster target=kubernetes-admin@kubernetes
+2026-07-22T15:25:23+09:00 [20260722-152523] [switch-to-onprem] [INFO] Kubernetes API 확인 context=kubernetes-admin@kubernetes
+2026-07-22T15:25:23+09:00 [20260722-152523] [switch-to-onprem] [INFO] Kubernetes API 확인 context=kubernetes-admin@kubernetes
+2026-07-22T15:25:23+09:00 [20260722-152523] [switch-to-onprem] [INFO] STEP_SUCCESS step=check_onprem_cluster target=kubernetes-admin@kubernetes duration=0s
+2026-07-22T15:25:23+09:00 [20260722-152523] [switch-to-onprem] [INFO] Kubernetes API 확인 context=eks-a
+2026-07-22T15:25:24+09:00 [20260722-152523] [switch-to-onprem] [INFO] EKS-A Kubernetes API 연결 가능
+2026-07-22T15:25:24+09:00 [20260722-152523] [switch-to-onprem] [INFO] 기존 replica eks-a=1 onprem=0
+2026-07-22T15:25:24+09:00 [20260722-152523] [switch-to-onprem] [INFO] 클러스터 상태 수집 context=kubernetes-admin@kubernetes label=before-switch-onprem
+
+===== before-switch-onprem: Nodes =====
+NAME     STATUS   ROLES           AGE   VERSION    INTERNAL-IP   EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION      CONTAINER-RUNTIME
+master   Ready    control-plane   13d   v1.33.13   172.16.8.10   <none>        Ubuntu 24.04.4 LTS   6.8.0-136-generic   docker://28.5.1
+node1    Ready    <none>          10d   v1.29.15   172.16.8.11   <none>        Ubuntu 24.04.4 LTS   6.8.0-136-generic   docker://28.5.1
+node2    Ready    <none>          10d   v1.29.15   172.16.8.12   <none>        Ubuntu 24.04.4 LTS   6.8.0-136-generic   docker://28.5.1
+
+===== before-switch-onprem: Cloudflared =====
+NAME                          READY   UP-TO-DATE   AVAILABLE   AGE   CONTAINERS    IMAGES                             SELECTOR
+deployment.apps/cloudflared   0/0     0            0           2d    cloudflared   cloudflare/cloudflared:2024.11.0   app=cloudflared
+
+===== before-switch-onprem: Application =====
+NAME                 TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE   SELECTOR
+service/kubernetes   ClusterIP   10.96.0.1    <none>        443/TCP   13d   <none>
+
+2026-07-22T15:25:25+09:00 [20260722-152523] [switch-to-onprem] [INFO] STEP_START step=internal_health_before_switch target=onprem
+2026-07-22T15:25:25+09:00 [20260722-152523] [switch-to-onprem] [INFO] 내부 헬스체크 context=kubernetes-admin@kubernetes service=msa-app
+2026-07-22T15:25:25+09:00 [20260722-152523] [switch-to-onprem] [INFO] 내부 헬스체크 context=kubernetes-admin@kubernetes service=msa-app
+curl: (6) Could not resolve host: msa-app
+pod "healthcheck-10445-1784701525" deleted
+pod default/healthcheck-10445-1784701525 terminated (Error)
+2026-07-22T15:25:33+09:00 [20260722-152523] [switch-to-onprem] [ERROR] STEP_FAILED step=internal_health_before_switch target=onprem duration=8s exit_code=6
+2026-07-22T15:25:33+09:00 [20260722-152523] [switch-to-onprem] [WARN] 온프레미스 전환 실패. 기존 replica 상태로 롤백 시작
+2026-07-22T15:25:33+09:00 [20260722-152523] [switch-to-onprem] [INFO] SCRIPT_END status=FAILED duration=10s message=온프레미스 전환 실패 및 replica 롤백 수행

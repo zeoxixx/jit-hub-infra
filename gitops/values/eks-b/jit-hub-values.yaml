@@ -1,24 +1,24 @@
 # gitops/values/eks-b/jit-hub-values.yaml
 # 평시 Cold Standby입니다. JIT 전환 시 replicaCount를 올리고 gateway도 활성화합니다.
 gateway:
-  replicaCount: 0
+  replicaCount: 1
 auth:
-  replicaCount: 0
+  replicaCount: 1
   db:
     enabled: false
     host: "postgres-gateway"
 weather:
-  replicaCount: 0
+  replicaCount: 1
   db:
     enabled: false
     host: "postgres-gateway"
 traffic:
-  replicaCount: 0
+  replicaCount: 1
   db:
     enabled: false
     host: "postgres-gateway"
 tourist:
-  replicaCount: 0
+  replicaCount: 1
   db:
     enabled: false
     host: "postgres-gateway"

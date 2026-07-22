@@ -1,0 +1,11 @@
+2026-07-22T15:56:34+09:00 [20260722-155634] [provision-and-switch-to-dr] [INFO] EKS-B JIT 프로비저닝 시작
+2026-07-22T15:56:34+09:00 [20260722-155634] [provision-and-switch-to-dr] [INFO] Terraform state 파일은 삭제하거나 초기화하지 않음
+2026-07-22T15:56:34+09:00 [20260722-155634] [provision-and-switch-to-dr] [INFO] DR base directory=/home/user/terraform/aws/envs/dr-region-b
+2026-07-22T15:56:34+09:00 [20260722-155634] [provision-and-switch-to-dr] [INFO] STEP_START step=check_onprem_context target=kubernetes-admin@kubernetes
+2026-07-22T15:56:34+09:00 [20260722-155634] [provision-and-switch-to-dr] [INFO] STEP_SUCCESS step=check_onprem_context target=kubernetes-admin@kubernetes duration=0s
+2026-07-22T15:56:34+09:00 [20260722-155634] [provision-and-switch-to-dr] [INFO] STEP_START step=check_onprem_cluster target=kubernetes-admin@kubernetes
+2026-07-22T15:56:34+09:00 [20260722-155634] [provision-and-switch-to-dr] [INFO] Kubernetes API 확인 context=kubernetes-admin@kubernetes
+2026-07-22T15:56:34+09:00 [20260722-155634] [provision-and-switch-to-dr] [INFO] Kubernetes API 확인 context=kubernetes-admin@kubernetes
+2026-07-22T15:56:34+09:00 [20260722-155634] [provision-and-switch-to-dr] [INFO] STEP_SUCCESS step=check_onprem_cluster target=kubernetes-admin@kubernetes duration=0s
+2026-07-22T15:56:34+09:00 [20260722-155634] [provision-and-switch-to-dr] [ERROR] Terraform stack 디렉터리가 없습니다: /home/user/terraform/aws/envs/dr-region-b/02-eks
+2026-07-22T15:56:34+09:00 [20260722-155634] [provision-and-switch-to-dr] [INFO] SCRIPT_END status=FAILED duration=0s message=02-eks Terraform apply 실패

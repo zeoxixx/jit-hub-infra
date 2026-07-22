@@ -6,6 +6,10 @@ terraform {
       source  = "hashicorp/aws"
       version = "~> 5.0"
     }
+    helm = {
+      source  = "hashicorp/helm"
+      version = "~> 2.17"
+    }
 
     kubernetes = {
       source  = "hashicorp/kubernetes"
@@ -51,6 +55,24 @@ provider "kubernetes" {
   }
 }
 
+provider "helm" {
+  kubernetes {
+    host = data.terraform_remote_state.eks.outputs.cluster_endpoint
+    cluster_ca_certificate = base64decode(
+      data.terraform_remote_state.eks.outputs.cluster_certificate_authority_data
+    )
+    exec {
+      api_version = "client.authentication.k8s.io/v1beta1"
+      command     = "aws"
+      args = [
+        "eks", "get-token",
+        "--cluster-name", data.terraform_remote_state.eks.outputs.cluster_name,
+        "--region", "ap-northeast-1"
+      ]
+    }
+  }
+}
+
 data "terraform_remote_state" "eks" {
 
   backend = "local"
@@ -59,6 +81,13 @@ data "terraform_remote_state" "eks" {
     path = "../02-eks/terraform.tfstate"
   }
 
+}
+data "terraform_remote_state" "onprem" {
+  backend = "local"
+
+  config = {
+    path = "../../../../onprem/01-onprem-platform/terraform.tfstate"
+  }
 }
 
 # 온프레미스(VMware k8s) 클러스터 조작용 프로바이더 별칭 정의

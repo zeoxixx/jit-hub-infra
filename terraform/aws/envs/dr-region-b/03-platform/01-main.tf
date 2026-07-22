@@ -27,6 +27,30 @@ module "tailscale" {
 
   envs       = "dr"
 }
+# ---------------------------------------------------------
+# 5. Ingress-Nginx 설치 (eks-b)
+# ---------------------------------------------------------
+module "ingress_nginx" {
+  source = "../../../../shared/modules/ingress-nginx"
+
+  namespace     = "ingress-nginx"
+  service_type  = "LoadBalancer"   # eks-a는 클라우드 LB 사용
+  replica_count = 2
+}
+
+# ---------------------------------------------------------
+# 6. Cloudflared Connector 배포 (eks-b, 평시 replicas=0)
+#    ⚠ Tunnel은 여기서 만들지 않음 — onprem에서 생성된 것을 재사용
+#    ⚠ TEMPORARY — ArgoCD(charts/cloudflared) 완성되면 이 블록 제거
+# ---------------------------------------------------------
+module "cloudflared_connector" {
+  source = "../../../../shared/modules/cloudflare-prod"
+
+  namespace    = "cloudflared"
+  secret_name  = "cloudflared-token"
+  tunnel_token = data.terraform_remote_state.onprem.outputs.tunnel_token
+  replicas     = 0
+}
 
 # ---------------------------------------------------------
 # Argo CD에 EKS 클러스터 등록 (Bearer Token 기반 선언적 연동)
@@ -69,7 +93,7 @@ resource "kubernetes_secret" "argocd_manager_token" {
   type = "kubernetes.io/service-account-token"
 }
 
-# 온프레미스 Argo CD 클러스터에 EKS-B 클러스터 등록용 Secret 생성 (kubernetes.onprem 프로바이더 별칭 사용)
+# 온프레미스 Argo CD 클러스터에 EKS-b 클러스터 등록용 Secret 생성 (kubernetes.onprem 프로바이더 별칭 사용)
 resource "kubernetes_secret" "eks_b_cluster_secret" {
   provider = kubernetes.onprem
   metadata {
@@ -82,7 +106,7 @@ resource "kubernetes_secret" "eks_b_cluster_secret" {
       "status"                         = "active"
     }
   }
-
+  
   data = {
     name   = "eks-b"
     server = data.terraform_remote_state.eks.outputs.cluster_endpoint

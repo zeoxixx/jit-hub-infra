@@ -1,0 +1,144 @@
+2026-07-22T16:30:43+09:00 [20260722-163043] [switch-to-onprem] [INFO] EKS-A → 온프레미스 긴급 트래픽 전환 시작
+2026-07-22T16:30:43+09:00 [20260722-163043] [switch-to-onprem] [INFO] STEP_START step=check_context target=eks-a
+2026-07-22T16:30:43+09:00 [20260722-163043] [switch-to-onprem] [INFO] STEP_SUCCESS step=check_context target=eks-a duration=0s
+2026-07-22T16:30:43+09:00 [20260722-163043] [switch-to-onprem] [INFO] STEP_START step=check_context target=kubernetes-admin@kubernetes
+2026-07-22T16:30:43+09:00 [20260722-163043] [switch-to-onprem] [INFO] STEP_SUCCESS step=check_context target=kubernetes-admin@kubernetes duration=0s
+2026-07-22T16:30:43+09:00 [20260722-163043] [switch-to-onprem] [INFO] STEP_START step=check_onprem_cluster target=kubernetes-admin@kubernetes
+2026-07-22T16:30:43+09:00 [20260722-163043] [switch-to-onprem] [INFO] Kubernetes API 확인 context=kubernetes-admin@kubernetes
+2026-07-22T16:30:43+09:00 [20260722-163043] [switch-to-onprem] [INFO] Kubernetes API 확인 context=kubernetes-admin@kubernetes
+2026-07-22T16:30:43+09:00 [20260722-163043] [switch-to-onprem] [INFO] STEP_SUCCESS step=check_onprem_cluster target=kubernetes-admin@kubernetes duration=0s
+2026-07-22T16:30:43+09:00 [20260722-163043] [switch-to-onprem] [INFO] Kubernetes API 확인 context=eks-a
+2026-07-22T16:30:44+09:00 [20260722-163043] [switch-to-onprem] [INFO] EKS-A Kubernetes API 연결 가능
+2026-07-22T16:30:44+09:00 [20260722-163043] [switch-to-onprem] [INFO] 기존 replica eks-a=0 onprem=1
+2026-07-22T16:30:44+09:00 [20260722-163043] [switch-to-onprem] [INFO] 클러스터 상태 수집 context=kubernetes-admin@kubernetes label=before-switch-onprem
+
+===== before-switch-onprem: Nodes =====
+NAME     STATUS   ROLES           AGE   VERSION    INTERNAL-IP   EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION      CONTAINER-RUNTIME
+master   Ready    control-plane   14d   v1.33.13   172.16.8.10   <none>        Ubuntu 24.04.4 LTS   6.8.0-136-generic   docker://28.5.1
+node1    Ready    <none>          10d   v1.29.15   172.16.8.11   <none>        Ubuntu 24.04.4 LTS   6.8.0-136-generic   docker://28.5.1
+node2    Ready    <none>          10d   v1.29.15   172.16.8.12   <none>        Ubuntu 24.04.4 LTS   6.8.0-136-generic   docker://28.5.1
+
+===== before-switch-onprem: Cloudflared =====
+NAME                          READY   UP-TO-DATE   AVAILABLE   AGE    CONTAINERS    IMAGES                             SELECTOR
+deployment.apps/cloudflared   1/1     1            1           2d1h   cloudflared   cloudflare/cloudflared:2024.11.0   app=cloudflared
+
+NAME                              READY   STATUS    RESTARTS   AGE   IP               NODE    NOMINATED NODE   READINESS GATES
+pod/cloudflared-fc695b5c9-glx6f   1/1     Running   0          27m   192.168.104.34   node2   <none>           <none>
+
+===== before-switch-onprem: Application =====
+NAME                              READY   UP-TO-DATE   AVAILABLE   AGE   CONTAINERS   IMAGES                                            SELECTOR
+deployment.apps/auth-db           1/1     1            1           47h   postgres     postgres:15-alpine                                app=auth-db
+deployment.apps/auth-service      1/1     1            1           47h   auth         harbor.zeoxixx.cloud/jit-hub/auth-service:v1      app=auth
+deployment.apps/gateway-service   1/1     1            1           47h   gateway      harbor.zeoxixx.cloud/jit-hub/jit-hub-gateway:v1   app=gateway
+deployment.apps/tourist-db        1/1     1            1           47h   postgres     postgres:15-alpine                                app=tourist-db
+deployment.apps/tourist-service   1/1     1            1           47h   tourist      harbor.zeoxixx.cloud/jit-hub/tourist-service:v1   app=tourist
+deployment.apps/traffic-db        1/1     1            1           47h   postgres     postgres:15-alpine                                app=traffic-db
+deployment.apps/traffic-service   1/1     1            1           47h   traffic      harbor.zeoxixx.cloud/jit-hub/traffic-service:v1   app=traffic
+deployment.apps/weather-db        1/1     1            1           47h   postgres     postgres:15-alpine                                app=weather-db
+deployment.apps/weather-service   1/1     1            1           47h   weather      harbor.zeoxixx.cloud/jit-hub/weather-service:v1   app=weather
+
+NAME                                   READY   STATUS    RESTARTS      AGE     IP                NODE    NOMINATED NODE   READINESS GATES
+pod/auth-db-7995578864-4b6d8           1/1     Running   1 (16h ago)   27h     192.168.104.22    node2   <none>           <none>
+pod/auth-service-67b4dccb85-9hxr6      1/1     Running   0             6h16m   192.168.104.29    node2   <none>           <none>
+pod/gateway-service-7dc76f46b9-ztpsk   1/1     Running   0             5h59m   192.168.104.30    node2   <none>           <none>
+pod/tourist-db-5bb6587dfd-rdxn5        1/1     Running   1 (16h ago)   27h     192.168.104.16    node2   <none>           <none>
+pod/tourist-service-7cfbdbb85c-krj4w   1/1     Running   0             6h16m   192.168.166.178   node1   <none>           <none>
+pod/traffic-db-585b859749-n5wn8        1/1     Running   1 (16h ago)   27h     192.168.104.17    node2   <none>           <none>
+pod/traffic-service-5df4865bbf-7g7bm   1/1     Running   0             6h16m   192.168.104.31    node2   <none>           <none>
+pod/weather-db-7579d778b8-vbpfc        1/1     Running   1 (16h ago)   27h     192.168.104.13    node2   <none>           <none>
+pod/weather-service-7cd79d6789-lghmf   1/1     Running   0             6h16m   192.168.104.28    node2   <none>           <none>
+
+NAME                      TYPE           CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE   SELECTOR
+service/auth-db           LoadBalancer   10.101.189.167   172.16.8.47   5432:31423/TCP   8h    app=auth-db
+service/auth-service      ClusterIP      10.105.115.252   <none>        8001/TCP         47h   app=auth
+service/gateway-service   ClusterIP      10.104.51.171    <none>        80/TCP           47h   app=gateway
+service/tourist-db        LoadBalancer   10.107.49.35     172.16.8.50   5432:30113/TCP   8h    app=tourist-db
+service/tourist-service   ClusterIP      10.96.77.75      <none>        8004/TCP         47h   app=tourist
+service/traffic-db        LoadBalancer   10.96.14.194     172.16.8.49   5432:30399/TCP   8h    app=traffic-db
+service/traffic-service   ClusterIP      10.107.41.88     <none>        8003/TCP         47h   app=traffic
+service/weather-db        LoadBalancer   10.96.51.192     172.16.8.48   5432:32761/TCP   8h    app=weather-db
+service/weather-service   ClusterIP      10.98.223.235    <none>        8002/TCP         47h   app=weather
+
+NAME                                                        CLASS   HOSTS           ADDRESS   PORTS   AGE
+ingress.networking.k8s.io/onprem-jit-hub-app-ingress-rule   nginx   zeoxixx.cloud             80      47h
+
+2026-07-22T16:30:45+09:00 [20260722-163043] [switch-to-onprem] [INFO] STEP_START step=internal_health_before_switch target=onprem
+2026-07-22T16:30:45+09:00 [20260722-163043] [switch-to-onprem] [INFO] 내부 헬스체크 context=kubernetes-admin@kubernetes service=gateway-service
+2026-07-22T16:30:45+09:00 [20260722-163043] [switch-to-onprem] [INFO] 내부 헬스체크 context=kubernetes-admin@kubernetes service=gateway-service
+{"status":"ok","service":"auth","location":"LOCAL-DEV","timestamp":"2026-07-22T07:30:46.382749+00:00"}pod "healthcheck-7522-1784705445" deleted
+2026-07-22T16:30:48+09:00 [20260722-163043] [switch-to-onprem] [INFO] STEP_SUCCESS step=internal_health_before_switch target=onprem duration=3s
+2026-07-22T16:30:48+09:00 [20260722-163043] [switch-to-onprem] [INFO] STEP_START step=activate_cloudflared target=onprem
+2026-07-22T16:30:48+09:00 [20260722-163043] [switch-to-onprem] [INFO] cloudflared scale context=kubernetes-admin@kubernetes replicas=1
+2026-07-22T16:30:48+09:00 [20260722-163043] [switch-to-onprem] [INFO] cloudflared scale context=kubernetes-admin@kubernetes replicas=1
+deployment.apps/cloudflared scaled
+deployment "cloudflared" successfully rolled out
+2026-07-22T16:30:48+09:00 [20260722-163043] [switch-to-onprem] [INFO] cloudflared 대기 context=kubernetes-admin@kubernetes desired=1 ready=1 expected=1 attempt=1/30
+2026-07-22T16:30:48+09:00 [20260722-163043] [switch-to-onprem] [INFO] cloudflared 대기 context=kubernetes-admin@kubernetes desired=1 ready=1 expected=1 attempt=1/30
+2026-07-22T16:30:48+09:00 [20260722-163043] [switch-to-onprem] [INFO] STEP_SUCCESS step=activate_cloudflared target=onprem duration=0s
+2026-07-22T16:30:48+09:00 [20260722-163043] [switch-to-onprem] [INFO] make-before-break: 온프레미스 connector 활성화 완료
+2026-07-22T16:30:48+09:00 [20260722-163043] [switch-to-onprem] [INFO] Kubernetes API 확인 context=eks-a
+2026-07-22T16:30:49+09:00 [20260722-163043] [switch-to-onprem] [INFO] STEP_START step=deactivate_cloudflared target=eks-a
+2026-07-22T16:30:49+09:00 [20260722-163043] [switch-to-onprem] [INFO] cloudflared scale context=eks-a replicas=0
+2026-07-22T16:30:49+09:00 [20260722-163043] [switch-to-onprem] [INFO] cloudflared scale context=eks-a replicas=0
+deployment.apps/cloudflared scaled
+2026-07-22T16:30:51+09:00 [20260722-163043] [switch-to-onprem] [INFO] cloudflared 대기 context=eks-a desired=0 ready=0 expected=0 attempt=1/30
+2026-07-22T16:30:51+09:00 [20260722-163043] [switch-to-onprem] [INFO] cloudflared 대기 context=eks-a desired=0 ready=0 expected=0 attempt=1/30
+2026-07-22T16:30:51+09:00 [20260722-163043] [switch-to-onprem] [INFO] STEP_SUCCESS step=deactivate_cloudflared target=eks-a duration=2s
+2026-07-22T16:30:51+09:00 [20260722-163043] [switch-to-onprem] [INFO] STEP_START step=external_health_after_switch target=onprem
+2026-07-22T16:30:52+09:00 [20260722-163043] [switch-to-onprem] [INFO] 외부 헬스체크 성공 url=https://zeoxixx.cloud/health code=200
+2026-07-22T16:30:52+09:00 [20260722-163043] [switch-to-onprem] [INFO] 외부 헬스체크 성공 url=https://zeoxixx.cloud/health code=200
+2026-07-22T16:30:52+09:00 [20260722-163043] [switch-to-onprem] [INFO] STEP_SUCCESS step=external_health_after_switch target=onprem duration=1s
+2026-07-22T16:30:52+09:00 [20260722-163043] [switch-to-onprem] [INFO] 클러스터 상태 수집 context=kubernetes-admin@kubernetes label=after-switch-onprem
+
+===== after-switch-onprem: Nodes =====
+NAME     STATUS   ROLES           AGE   VERSION    INTERNAL-IP   EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION      CONTAINER-RUNTIME
+master   Ready    control-plane   14d   v1.33.13   172.16.8.10   <none>        Ubuntu 24.04.4 LTS   6.8.0-136-generic   docker://28.5.1
+node1    Ready    <none>          10d   v1.29.15   172.16.8.11   <none>        Ubuntu 24.04.4 LTS   6.8.0-136-generic   docker://28.5.1
+node2    Ready    <none>          10d   v1.29.15   172.16.8.12   <none>        Ubuntu 24.04.4 LTS   6.8.0-136-generic   docker://28.5.1
+
+===== after-switch-onprem: Cloudflared =====
+NAME                          READY   UP-TO-DATE   AVAILABLE   AGE    CONTAINERS    IMAGES                             SELECTOR
+deployment.apps/cloudflared   1/1     1            1           2d1h   cloudflared   cloudflare/cloudflared:2024.11.0   app=cloudflared
+
+NAME                              READY   STATUS    RESTARTS   AGE   IP               NODE    NOMINATED NODE   READINESS GATES
+pod/cloudflared-fc695b5c9-glx6f   1/1     Running   0          27m   192.168.104.34   node2   <none>           <none>
+
+===== after-switch-onprem: Application =====
+NAME                              READY   UP-TO-DATE   AVAILABLE   AGE   CONTAINERS   IMAGES                                            SELECTOR
+deployment.apps/auth-db           1/1     1            1           47h   postgres     postgres:15-alpine                                app=auth-db
+deployment.apps/auth-service      1/1     1            1           47h   auth         harbor.zeoxixx.cloud/jit-hub/auth-service:v1      app=auth
+deployment.apps/gateway-service   1/1     1            1           47h   gateway      harbor.zeoxixx.cloud/jit-hub/jit-hub-gateway:v1   app=gateway
+deployment.apps/tourist-db        1/1     1            1           47h   postgres     postgres:15-alpine                                app=tourist-db
+deployment.apps/tourist-service   1/1     1            1           47h   tourist      harbor.zeoxixx.cloud/jit-hub/tourist-service:v1   app=tourist
+deployment.apps/traffic-db        1/1     1            1           47h   postgres     postgres:15-alpine                                app=traffic-db
+deployment.apps/traffic-service   1/1     1            1           47h   traffic      harbor.zeoxixx.cloud/jit-hub/traffic-service:v1   app=traffic
+deployment.apps/weather-db        1/1     1            1           47h   postgres     postgres:15-alpine                                app=weather-db
+deployment.apps/weather-service   1/1     1            1           47h   weather      harbor.zeoxixx.cloud/jit-hub/weather-service:v1   app=weather
+
+NAME                                   READY   STATUS    RESTARTS      AGE     IP                NODE    NOMINATED NODE   READINESS GATES
+pod/auth-db-7995578864-4b6d8           1/1     Running   1 (16h ago)   27h     192.168.104.22    node2   <none>           <none>
+pod/auth-service-67b4dccb85-9hxr6      1/1     Running   0             6h16m   192.168.104.29    node2   <none>           <none>
+pod/gateway-service-7dc76f46b9-ztpsk   1/1     Running   0             5h59m   192.168.104.30    node2   <none>           <none>
+pod/tourist-db-5bb6587dfd-rdxn5        1/1     Running   1 (16h ago)   27h     192.168.104.16    node2   <none>           <none>
+pod/tourist-service-7cfbdbb85c-krj4w   1/1     Running   0             6h16m   192.168.166.178   node1   <none>           <none>
+pod/traffic-db-585b859749-n5wn8        1/1     Running   1 (16h ago)   27h     192.168.104.17    node2   <none>           <none>
+pod/traffic-service-5df4865bbf-7g7bm   1/1     Running   0             6h16m   192.168.104.31    node2   <none>           <none>
+pod/weather-db-7579d778b8-vbpfc        1/1     Running   1 (16h ago)   27h     192.168.104.13    node2   <none>           <none>
+pod/weather-service-7cd79d6789-lghmf   1/1     Running   0             6h16m   192.168.104.28    node2   <none>           <none>
+
+NAME                      TYPE           CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE   SELECTOR
+service/auth-db           LoadBalancer   10.101.189.167   172.16.8.47   5432:31423/TCP   8h    app=auth-db
+service/auth-service      ClusterIP      10.105.115.252   <none>        8001/TCP         47h   app=auth
+service/gateway-service   ClusterIP      10.104.51.171    <none>        80/TCP           47h   app=gateway
+service/tourist-db        LoadBalancer   10.107.49.35     172.16.8.50   5432:30113/TCP   8h    app=tourist-db
+service/tourist-service   ClusterIP      10.96.77.75      <none>        8004/TCP         47h   app=tourist
+service/traffic-db        LoadBalancer   10.96.14.194     172.16.8.49   5432:30399/TCP   8h    app=traffic-db
+service/traffic-service   ClusterIP      10.107.41.88     <none>        8003/TCP         47h   app=traffic
+service/weather-db        LoadBalancer   10.96.51.192     172.16.8.48   5432:32761/TCP   8h    app=weather-db
+service/weather-service   ClusterIP      10.98.223.235    <none>        8002/TCP         47h   app=weather
+
+NAME                                                        CLASS   HOSTS           ADDRESS   PORTS   AGE
+ingress.networking.k8s.io/onprem-jit-hub-app-ingress-rule   nginx   zeoxixx.cloud             80      47h
+
+2026-07-22T16:30:52+09:00 [20260722-163043] [switch-to-onprem] [INFO] EKS-A → 온프레미스 긴급 트래픽 전환 완료
+2026-07-22T16:30:52+09:00 [20260722-163043] [switch-to-onprem] [INFO] SCRIPT_END status=SUCCESS duration=9s message=온프레미스 긴급 우회 완료

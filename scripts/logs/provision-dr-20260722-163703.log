@@ -1,0 +1,493 @@
+2026-07-22T16:37:03+09:00 [20260722-163703] [provision-dr] [INFO] EKS-B JIT 프로비저닝 시작
+2026-07-22T16:37:03+09:00 [20260722-163703] [provision-dr] [INFO] Terraform state 파일은 삭제하거나 초기화하지 않음
+2026-07-22T16:37:03+09:00 [20260722-163703] [provision-dr] [INFO] DR base directory=/home/user/jit-hub-infra/terraform/aws/envs/dr-region-b
+2026-07-22T16:37:03+09:00 [20260722-163703] [provision-dr] [INFO] STEP_START step=check_onprem_context target=kubernetes-admin@kubernetes
+2026-07-22T16:37:03+09:00 [20260722-163703] [provision-dr] [INFO] STEP_SUCCESS step=check_onprem_context target=kubernetes-admin@kubernetes duration=0s
+2026-07-22T16:37:03+09:00 [20260722-163703] [provision-dr] [INFO] STEP_START step=check_onprem_cluster target=kubernetes-admin@kubernetes
+2026-07-22T16:37:03+09:00 [20260722-163703] [provision-dr] [INFO] Kubernetes API 확인 context=kubernetes-admin@kubernetes
+2026-07-22T16:37:03+09:00 [20260722-163703] [provision-dr] [INFO] Kubernetes API 확인 context=kubernetes-admin@kubernetes
+2026-07-22T16:37:03+09:00 [20260722-163703] [provision-dr] [INFO] STEP_SUCCESS step=check_onprem_cluster target=kubernetes-admin@kubernetes duration=0s
+2026-07-22T16:37:03+09:00 [20260722-163703] [provision-dr] [INFO] STEP_START step=terraform_init_02-eks target=02-eks
+[0m[1mInitializing the backend...[0m
+
+[0m[1mInitializing modules...[0m
+
+[0m[1mInitializing provider plugins...[0m
+- terraform.io/builtin/terraform is built in to Terraform
+- Reusing previous version of hashicorp/cloudinit from the dependency lock file
+- Reusing previous version of hashicorp/null from the dependency lock file
+- Reusing previous version of hashicorp/aws from the dependency lock file
+- Reusing previous version of hashicorp/time from the dependency lock file
+- Reusing previous version of hashicorp/tls from the dependency lock file
+- Using previously-installed hashicorp/time v0.14.0
+- Using previously-installed hashicorp/tls v4.3.0
+- Using previously-installed hashicorp/cloudinit v2.4.0
+- Using previously-installed hashicorp/null v3.3.0
+- Using previously-installed hashicorp/aws v5.100.0
+
+
+[0m[1m[32mTerraform has been successfully initialized![0m[32m[0m
+[0m[32m
+You may now begin working with Terraform. Try running "terraform plan" to see
+any changes that are required for your infrastructure. All Terraform commands
+should now work.
+
+If you ever set or change modules or backend configuration for Terraform,
+rerun this command to reinitialize your working directory. If you forget, other
+commands will detect it and remind you to do so if necessary.[0m
+2026-07-22T16:37:07+09:00 [20260722-163703] [provision-dr] [INFO] STEP_SUCCESS step=terraform_init_02-eks target=02-eks duration=4s
+2026-07-22T16:37:08+09:00 [20260722-163703] [provision-dr] [INFO] STEP_START step=terraform_apply_02-eks target=02-eks
+[0m[1mdata.terraform_remote_state.network: Reading...[0m[0m
+[0m[1mdata.terraform_remote_state.network: Read complete after 0s[0m
+[0m[1mmodule.eks.module.eks.module.eks_managed_node_group["samsi-dr-eks-worker"].data.aws_caller_identity.current: Reading...[0m[0m
+[0m[1mmodule.eks.module.eks.module.kms.data.aws_partition.current[0]: Reading...[0m[0m
+[0m[1mmodule.eks.module.eks.aws_cloudwatch_log_group.this[0]: Refreshing state... [id=/aws/eks/hello-eks/cluster][0m
+[0m[1mmodule.eks.module.eks.data.aws_caller_identity.current[0]: Reading...[0m[0m
+[0m[1mmodule.eks.module.eks.module.eks_managed_node_group["samsi-dr-eks-worker"].data.aws_iam_policy_document.assume_role_policy[0]: Reading...[0m[0m
+[0m[1mmodule.eks.module.eks.data.aws_partition.current[0]: Reading...[0m[0m
+[0m[1mmodule.eks.module.eks.module.kms.data.aws_caller_identity.current[0]: Reading...[0m[0m
+[0m[1mmodule.eks.module.eks.module.eks_managed_node_group["samsi-dr-eks-worker"].data.aws_partition.current: Reading...[0m[0m
+[0m[1mmodule.eks.module.eks.aws_security_group.cluster[0]: Refreshing state... [id=sg-086f20c2306b5cea1][0m
+[0m[1mmodule.eks.module.eks.module.eks_managed_node_group["samsi-dr-eks-worker"].data.aws_partition.current: Read complete after 0s [id=aws][0m
+[0m[1mmodule.eks.module.eks.module.eks_managed_node_group["samsi-dr-eks-worker"].data.aws_iam_policy_document.assume_role_policy[0]: Read complete after 0s [id=2560088296][0m
+[0m[1mmodule.eks.module.eks.data.aws_partition.current[0]: Read complete after 0s [id=aws][0m
+[0m[1mmodule.eks.module.eks.module.kms.data.aws_partition.current[0]: Read complete after 0s [id=aws][0m
+[0m[1mmodule.eks.module.eks.aws_security_group.node[0]: Refreshing state... [id=sg-03fa5b318a7ddadce][0m
+[0m[1mmodule.eks.module.eks.data.aws_iam_policy_document.assume_role_policy[0]: Reading...[0m[0m
+[0m[1mmodule.eks.module.eks.module.eks_managed_node_group["samsi-dr-eks-worker"].aws_iam_role.this[0]: Refreshing state... [id=samsi-dr-eks-worker-eks-node-group-20260722040239843400000005][0m
+[0m[1mmodule.eks.module.eks.data.aws_iam_policy_document.assume_role_policy[0]: Read complete after 0s [id=2830595799][0m
+[0m[1mmodule.eks.module.eks.data.aws_iam_policy_document.custom[0]: Reading...[0m[0m
+[0m[1mmodule.eks.module.eks.aws_iam_role.this[0]: Refreshing state... [id=hello-eks-cluster-20260722040239839800000002][0m
+[0m[1mmodule.eks.module.eks.data.aws_iam_policy_document.custom[0]: Read complete after 0s [id=513122117][0m
+[0m[1mmodule.eks.module.eks.aws_iam_policy.custom[0]: Refreshing state... [id=arn:aws:iam::243197391442:policy/hello-eks-cluster-20260722040239841300000003][0m
+[0m[1mmodule.eks.module.eks.module.kms.data.aws_caller_identity.current[0]: Read complete after 0s [id=243197391442][0m
+[0m[1mmodule.eks.module.eks.module.eks_managed_node_group["samsi-dr-eks-worker"].data.aws_caller_identity.current: Read complete after 0s [id=243197391442][0m
+[0m[1mmodule.eks.module.eks.data.aws_caller_identity.current[0]: Read complete after 0s [id=243197391442][0m
+[0m[1mmodule.eks.module.eks.data.aws_iam_session_context.current[0]: Reading...[0m[0m
+[0m[1mmodule.eks.module.eks.data.aws_iam_session_context.current[0]: Read complete after 0s [id=arn:aws:iam::243197391442:user/admin][0m
+[0m[1mmodule.eks.module.eks.aws_security_group_rule.node["ingress_cluster_kubelet"]: Refreshing state... [id=sgrule-3215868254][0m
+[0m[1mmodule.eks.module.eks.aws_security_group_rule.node["ingress_node_exporter"]: Refreshing state... [id=sgrule-2445578561][0m
+[0m[1mmodule.eks.module.eks.aws_security_group_rule.cluster["ingress_nodes_443"]: Refreshing state... [id=sgrule-2541966278][0m
+[0m[1mmodule.eks.module.eks.aws_security_group_rule.node["ingress_self_coredns_udp"]: Refreshing state... [id=sgrule-1167728944][0m
+[0m[1mmodule.eks.module.eks.aws_security_group_rule.node["ingress_vpc"]: Refreshing state... [id=sgrule-1505578787][0m
+[0m[1mmodule.eks.module.eks.aws_security_group_rule.node["ingress_cluster_6443_webhook"]: Refreshing state... [id=sgrule-2742821813][0m
+[0m[1mmodule.eks.module.eks.aws_security_group_rule.node["ingress_nodes_ephemeral"]: Refreshing state... [id=sgrule-2579311127][0m
+[0m[1mmodule.eks.module.eks.aws_security_group_rule.node["ingress_self_coredns_tcp"]: Refreshing state... [id=sgrule-3787817695][0m
+[0m[1mmodule.eks.module.eks.aws_security_group_rule.node["ingress_cluster_443"]: Refreshing state... [id=sgrule-1818066086][0m
+[0m[1mmodule.eks.module.eks.aws_security_group_rule.node["ingress_cluster_9443_webhook"]: Refreshing state... [id=sgrule-3565235295][0m
+[0m[1mmodule.eks.module.eks.aws_security_group_rule.node["ingress_cluster_4443_webhook"]: Refreshing state... [id=sgrule-1782465571][0m
+[0m[1mmodule.eks.module.eks.aws_security_group_rule.node["egress_all"]: Refreshing state... [id=sgrule-121201449][0m
+[0m[1mmodule.eks.module.eks.aws_security_group_rule.node["ingress_cluster_8443_webhook"]: Refreshing state... [id=sgrule-2954895252][0m
+[0m[1mmodule.eks.module.eks.aws_iam_role_policy_attachment.this["AmazonEKSVPCResourceController"]: Refreshing state... [id=hello-eks-cluster-20260722040239839800000002-20260722040241741800000007][0m
+[0m[1mmodule.eks.module.eks.aws_iam_role_policy_attachment.this["AmazonEKSClusterPolicy"]: Refreshing state... [id=hello-eks-cluster-20260722040239839800000002-20260722040241727300000006][0m
+[0m[1mmodule.eks.module.eks.aws_iam_role_policy_attachment.custom[0]: Refreshing state... [id=hello-eks-cluster-20260722040239839800000002-20260722040241819500000008][0m
+[0m[1mmodule.eks.module.eks.module.kms.data.aws_iam_policy_document.this[0]: Reading...[0m[0m
+[0m[1mmodule.eks.module.eks.module.kms.data.aws_iam_policy_document.this[0]: Read complete after 0s [id=3850062481][0m
+[0m[1mmodule.eks.module.eks.module.kms.aws_kms_key.this[0]: Refreshing state... [id=f18100e9-ebe1-4341-95cb-def6129cfe88][0m
+[0m[1mmodule.eks.module.eks.module.eks_managed_node_group["samsi-dr-eks-worker"].aws_iam_role_policy_attachment.this["AmazonEKSWorkerNodePolicy"]: Refreshing state... [id=samsi-dr-eks-worker-eks-node-group-20260722040239843400000005-20260722040241994100000009][0m
+[0m[1mmodule.eks.module.eks.module.eks_managed_node_group["samsi-dr-eks-worker"].aws_iam_role_policy_attachment.this["AmazonEKS_CNI_Policy"]: Refreshing state... [id=samsi-dr-eks-worker-eks-node-group-20260722040239843400000005-2026072204024208390000000b][0m
+[0m[1mmodule.eks.module.eks.module.eks_managed_node_group["samsi-dr-eks-worker"].aws_iam_role_policy_attachment.this["AmazonEC2ContainerRegistryReadOnly"]: Refreshing state... [id=samsi-dr-eks-worker-eks-node-group-20260722040239843400000005-2026072204024201780000000a][0m
+[0m[1mmodule.eks.module.eks.module.kms.aws_kms_alias.this["cluster"]: Refreshing state... [id=alias/eks/hello-eks][0m
+[0m[1mmodule.eks.module.eks.aws_iam_policy.cluster_encryption[0]: Refreshing state... [id=arn:aws:iam::243197391442:policy/hello-eks-cluster-ClusterEncryption2026072204030263870000000c][0m
+[0m[1mmodule.eks.module.eks.aws_eks_cluster.this[0]: Refreshing state... [id=hello-eks][0m
+[0m[1mmodule.eks.module.eks.data.aws_eks_addon_version.this["coredns"]: Reading...[0m[0m
+[0m[1mmodule.eks.module.eks.data.aws_eks_addon_version.this["vpc-cni"]: Reading...[0m[0m
+[0m[1mmodule.eks.module.eks.data.aws_eks_addon_version.this["kube-proxy"]: Reading...[0m[0m
+[0m[1mmodule.eks.module.eks.data.tls_certificate.this[0]: Reading...[0m[0m
+[0m[1mmodule.eks.module.eks.aws_eks_access_entry.this["cluster_creator"]: Refreshing state... [id=hello-eks:arn:aws:iam::243197391442:user/admin][0m
+[0m[1mmodule.eks.module.eks.time_sleep.this[0]: Refreshing state... [id=2026-07-22T04:11:51Z][0m
+[0m[1mmodule.eks.module.eks.module.eks_managed_node_group["samsi-dr-eks-worker"].module.user_data.null_resource.validate_cluster_service_cidr: Refreshing state... [id=8953845492750859066][0m
+[0m[1mmodule.eks.module.eks.module.eks_managed_node_group["samsi-dr-eks-worker"].aws_launch_template.this[0]: Refreshing state... [id=lt-0d46fd66bc4e3f578][0m
+[0m[1mmodule.eks.module.eks.aws_iam_role_policy_attachment.cluster_encryption[0]: Refreshing state... [id=hello-eks-cluster-20260722040239839800000002-2026072204030358120000000d][0m
+[0m[1mmodule.eks.module.eks.data.tls_certificate.this[0]: Read complete after 0s [id=689b51723c82af77175806a2eda17f8b81260588][0m
+[0m[1mmodule.eks.module.eks.aws_iam_openid_connect_provider.oidc_provider[0]: Refreshing state... [id=arn:aws:iam::243197391442:oidc-provider/oidc.eks.ap-northeast-1.amazonaws.com/id/BB2D237724A85A11E64D9DED06492D5D][0m
+[0m[1mmodule.eks.module.eks.module.eks_managed_node_group["samsi-dr-eks-worker"].aws_eks_node_group.this[0]: Refreshing state... [id=hello-eks:samsi-dr-eks-worker-20260722041157615800000010][0m
+[0m[1mmodule.eks.module.eks.data.aws_eks_addon_version.this["kube-proxy"]: Read complete after 0s [id=kube-proxy][0m
+[0m[1mmodule.eks.module.eks.data.aws_eks_addon_version.this["coredns"]: Read complete after 0s [id=coredns][0m
+[0m[1mmodule.eks.module.eks.data.aws_eks_addon_version.this["vpc-cni"]: Read complete after 0s [id=vpc-cni][0m
+[0m[1mmodule.eks.module.eks.aws_eks_access_policy_association.this["cluster_creator_admin"]: Refreshing state... [id=hello-eks#arn:aws:iam::243197391442:user/admin#arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy][0m
+[0m[1mmodule.eks.module.eks.aws_eks_addon.this["kube-proxy"]: Refreshing state... [id=hello-eks:kube-proxy][0m
+[0m[1mmodule.eks.module.eks.aws_eks_addon.this["coredns"]: Refreshing state... [id=hello-eks:coredns][0m
+[0m[1mmodule.eks.module.eks.aws_eks_addon.this["vpc-cni"]: Refreshing state... [id=hello-eks:vpc-cni][0m
+
+[0m[1m[32mNo changes.[0m[1m Your infrastructure matches the configuration.[0m
+
+[0mTerraform has compared your real infrastructure against your configuration
+and found no differences, so no changes are needed.
+[33m╷[0m[0m
+[33m│[0m [0m[1m[33mWarning: [0m[0m[1mDeprecated value used[0m
+[33m│[0m [0m
+[33m│[0m [0m[0m  on .terraform/modules/eks.eks/outputs.tf line 218, in output "cluster_addons":
+[33m│[0m [0m 218:   value       = [4mmerge(aws_eks_addon.this, aws_eks_addon.before_compute)[0m[0m
+[33m│[0m [0m
+[33m│[0m [0m  The deprecation originates from module.eks.module.eks.aws_eks_addon.this["coredns"].resolve_conflicts
+[33m│[0m [0m
+[33m│[0m [0mDeprecated resource attribute "resolve_conflicts" used. Refer to the
+[33m│[0m [0mprovider documentation for details.
+[33m│[0m [0m
+[33m│[0m [0m(and 2 more similar warnings elsewhere)
+[33m╵[0m[0m
+[0m[1m[32m
+Apply complete! Resources: 0 added, 0 changed, 0 destroyed.[0m
+[0m[1m[32m
+Outputs:
+
+[0mcluster_certificate_authority_data = "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURCVENDQWUyZ0F3SUJBZ0lJRWswNGhvOG5aNDB3RFFZSktvWklodmNOQVFFTEJRQXdGVEVUTUJFR0ExVUUKQXhNS2EzVmlaWEp1WlhSbGN6QWVGdzB5TmpBM01qSXdOREF5TkRSYUZ3MHpOakEzTVRrd05EQTNORFJhTUJVeApFekFSQmdOVkJBTVRDbXQxWW1WeWJtVjBaWE13Z2dFaU1BMEdDU3FHU0liM0RRRUJBUVVBQTRJQkR3QXdnZ0VLCkFvSUJBUUR6MDhmcmxhSkREMG9MSFBjendmM1BVa3lvU09ON0szWjVZR21IVjM2b2R1WW1kSXp6WkpRZ2F6ekMKeTdBTW8xTmphNEVCRmRlSnBYUWJGSWlocHdzMzBFYnlCUVAyWjV4RFNsVm1ORkZLODRaTytvcXlIQjJiWWpkNgpHb0RKdHpsSTNsRDQ4RkRMd2FmSmRDbWN0dTM3MktIZm5hVWpsNkZLeDlxUFlpTGNadVZLdE1JRzZyWmhkbFdqCit6aktHQkd0Umk3d1FGTnBJWEtKb3Q3OURZTTVMdkJXM1NaRFpkSHN3cmhHem9CcmdPdEhCK3VBWmlRWGdrdlgKMkd4UktTZzNxZHJscE01dENoZmxYbXMxQjEwb29VWkxvVjN4emF6UVNkUStBanhlMzB4aWpKMFZkWEtqUWhpSApnWVE1bXhhdVBNK1MyRXNscm10ZFMyeVVoS3A5QWdNQkFBR2pXVEJYTUE0R0ExVWREd0VCL3dRRUF3SUNwREFQCkJnTlZIUk1CQWY4RUJUQURBUUgvTUIwR0ExVWREZ1FXQkJRcW1QeDhCTXpNb2FIRG84Wm5yNEZNczhjQ1F6QVYKQmdOVkhSRUVEakFNZ2dwcmRXSmxjbTVsZEdWek1BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQ2gzcTQvc2FndQo4d0ZiOFpkR1JSZmtWRHZvU3V1aDJCdzMzRUVLdWhyM2E4Z2dCT055Nmx3ODZTT0g5SEFQazBjQ0RDMndnKzN4CnV3Q0h4V3JoUEpjamY4aGJHeHVWRm9XZ3k1TjlqV1craUcwMktEcSttYXFuTTNHL0tLMmVZU3VMNmNRdVNyY2oKVUszc0p1ak0zY1ZJUlBjMVNSR2UrYjVUZ3MyRERvcHZRclZsS1BMWU0rSE9TMG1nTVhzRTFzbVRXN0c0U1p2LwpNOFRrMTBuT2kwY0lBNEUvd0ptM0xWZ0wwWlBtcDlGNmtwK0lPdE0wWXh2Mms1SnQycnN0Vzl0akZCYlhXVmMyCnNYUDdsRGcvZTAxYkQyZFlydGNLcHU0bUNZR0hxdlowV1c1RkErcFMzZFlwNFJvaFBVNXNzRHlveGRDSklIaTQKV3NFdTlTcEJEbmZiCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K"
+cluster_endpoint = "https://BB2D237724A85A11E64D9DED06492D5D.gr7.ap-northeast-1.eks.amazonaws.com"
+cluster_name = "hello-eks"
+oidc_provider_arn = "arn:aws:iam::243197391442:oidc-provider/oidc.eks.ap-northeast-1.amazonaws.com/id/BB2D237724A85A11E64D9DED06492D5D"
+2026-07-22T16:37:17+09:00 [20260722-163703] [provision-dr] [INFO] STEP_SUCCESS step=terraform_apply_02-eks target=02-eks duration=9s
+2026-07-22T16:37:18+09:00 [20260722-163703] [provision-dr] [INFO] EKS-B cluster_name=hello-eks
+2026-07-22T16:37:18+09:00 [20260722-163703] [provision-dr] [INFO] STEP_START step=update_kubeconfig target=eks-b
+Updated context eks-b in /home/user/.kube/config
+2026-07-22T16:37:19+09:00 [20260722-163703] [provision-dr] [INFO] STEP_SUCCESS step=update_kubeconfig target=eks-b duration=1s
+2026-07-22T16:37:19+09:00 [20260722-163703] [provision-dr] [INFO] STEP_START step=check_eks_b_context target=eks-b
+2026-07-22T16:37:19+09:00 [20260722-163703] [provision-dr] [INFO] STEP_SUCCESS step=check_eks_b_context target=eks-b duration=0s
+2026-07-22T16:37:19+09:00 [20260722-163703] [provision-dr] [INFO] STEP_START step=check_eks_b_cluster target=eks-b
+2026-07-22T16:37:19+09:00 [20260722-163703] [provision-dr] [INFO] Kubernetes API 확인 context=eks-b
+2026-07-22T16:37:19+09:00 [20260722-163703] [provision-dr] [INFO] Kubernetes API 확인 context=eks-b
+2026-07-22T16:37:20+09:00 [20260722-163703] [provision-dr] [INFO] STEP_SUCCESS step=check_eks_b_cluster target=eks-b duration=1s
+2026-07-22T16:37:20+09:00 [20260722-163703] [provision-dr] [INFO] STEP_START step=wait_eks_b_nodes target=eks-b
+node/ip-10-10-1-75.ap-northeast-1.compute.internal condition met
+node/ip-10-10-2-46.ap-northeast-1.compute.internal condition met
+2026-07-22T16:37:21+09:00 [20260722-163703] [provision-dr] [INFO] STEP_SUCCESS step=wait_eks_b_nodes target=eks-b duration=1s
+2026-07-22T16:37:21+09:00 [20260722-163703] [provision-dr] [INFO] STEP_START step=terraform_init_03-platform target=03-platform
+[0m[1mInitializing the backend...[0m
+
+[0m[1mInitializing modules...[0m
+
+[0m[1mInitializing provider plugins...[0m
+- terraform.io/builtin/terraform is built in to Terraform
+- Reusing previous version of hashicorp/null from the dependency lock file
+- Reusing previous version of hashicorp/aws from the dependency lock file
+- Reusing previous version of hashicorp/helm from the dependency lock file
+- Reusing previous version of hashicorp/kubernetes from the dependency lock file
+- Using previously-installed hashicorp/null v3.3.0
+- Using previously-installed hashicorp/aws v5.100.0
+- Using previously-installed hashicorp/helm v2.17.0
+- Using previously-installed hashicorp/kubernetes v2.38.0
+
+
+[33m╷[0m[0m
+[33m│[0m [0m[1m[33mWarning: [0m[0m[1mValue for undeclared variable[0m
+[33m│[0m [0m
+[33m│[0m [0m[0mThe root module does not declare a variable named "cloudflare_zone_id" but
+[33m│[0m [0ma value was found in file "terraform.tfvars". If you meant to use this
+[33m│[0m [0mvalue, add a "variable" block to the configuration.
+[33m│[0m [0m
+[33m│[0m [0mTo silence these warnings, use TF_VAR_... environment variables to provide
+[33m│[0m [0mcertain "global" settings to all configurations in your organization. To
+[33m│[0m [0mreduce the verbosity of these warnings, use the -compact-warnings option.
+[33m╵[0m[0m
+[33m╷[0m[0m
+[33m│[0m [0m[1m[33mWarning: [0m[0m[1mValue for undeclared variable[0m
+[33m│[0m [0m
+[33m│[0m [0m[0mThe root module does not declare a variable named "domain_name" but a value
+[33m│[0m [0mwas found in file "terraform.tfvars". If you meant to use this value, add a
+[33m│[0m [0m"variable" block to the configuration.
+[33m│[0m [0m
+[33m│[0m [0mTo silence these warnings, use TF_VAR_... environment variables to provide
+[33m│[0m [0mcertain "global" settings to all configurations in your organization. To
+[33m│[0m [0mreduce the verbosity of these warnings, use the -compact-warnings option.
+[33m╵[0m[0m
+[33m╷[0m[0m
+[33m│[0m [0m[1m[33mWarning: [0m[0m[1mValues for undeclared variables[0m
+[33m│[0m [0m
+[33m│[0m [0m[0mIn addition to the other similar warnings shown, 2 other variable(s)
+[33m│[0m [0mdefined without being declared.
+[33m╵[0m[0m
+[0m[1m[32mTerraform has been successfully initialized![0m[32m[0m
+[0m[32m
+You may now begin working with Terraform. Try running "terraform plan" to see
+any changes that are required for your infrastructure. All Terraform commands
+should now work.
+
+If you ever set or change modules or backend configuration for Terraform,
+rerun this command to reinitialize your working directory. If you forget, other
+commands will detect it and remind you to do so if necessary.[0m
+2026-07-22T16:37:24+09:00 [20260722-163703] [provision-dr] [INFO] STEP_SUCCESS step=terraform_init_03-platform target=03-platform duration=3s
+2026-07-22T16:37:24+09:00 [20260722-163703] [provision-dr] [INFO] STEP_START step=terraform_apply_03-platform target=03-platform
+[0m[1mdata.terraform_remote_state.eks: Reading...[0m[0m
+[0m[1mdata.terraform_remote_state.onprem: Reading...[0m[0m
+[0m[1mdata.terraform_remote_state.onprem: Read complete after 0s[0m
+[0m[1mdata.terraform_remote_state.eks: Read complete after 0s[0m
+[0m[1mmodule.tailscale.null_resource.install_tailscale: Refreshing state... [id=6177736705723713980][0m
+[0m[1mmodule.ingress_nginx.helm_release.ingress_nginx: Refreshing state... [id=ingress-nginx][0m
+[0m[1mkubernetes_service_account.argocd_manager: Refreshing state... [id=kube-system/argocd-manager][0m
+[0m[1mmodule.cloudflared_connector.kubernetes_namespace.cloudflare[0]: Refreshing state... [id=cloudflared][0m
+[0m[1mmodule.nginx.kubernetes_service_v1.nginx: Refreshing state... [id=default/nginx-service][0m
+[0m[1mmodule.nginx.kubernetes_deployment_v1.nginx: Refreshing state... [id=default/nginx-hello][0m
+[0m[1mmodule.cloudflared_connector.kubernetes_secret.cloudflared_token: Refreshing state... [id=cloudflared/cloudflared-token][0m
+[0m[1mkubernetes_secret.argocd_manager_token: Refreshing state... [id=kube-system/argocd-manager-token][0m
+[0m[1mkubernetes_cluster_role_binding.argocd_manager_binding: Refreshing state... [id=argocd-manager-role-binding][0m
+[0m[1mkubernetes_secret.eks_b_cluster_secret: Refreshing state... [id=argocd/cluster-eks-b][0m
+[0m[1mmodule.cloudflared_connector.kubernetes_deployment.cloudflared: Refreshing state... [id=cloudflared/cloudflared][0m
+
+[0m[1m[32mNo changes.[0m[1m Your infrastructure matches the configuration.[0m
+
+[0mTerraform has compared your real infrastructure against your configuration
+and found no differences, so no changes are needed.
+[33m╷[0m[0m
+[33m│[0m [0m[1m[33mWarning: [0m[0m[1mValue for undeclared variable[0m
+[33m│[0m [0m
+[33m│[0m [0m[0mThe root module does not declare a variable named "cloudflare_zone_id" but
+[33m│[0m [0ma value was found in file "terraform.tfvars". If you meant to use this
+[33m│[0m [0mvalue, add a "variable" block to the configuration.
+[33m│[0m [0m
+[33m│[0m [0mTo silence these warnings, use TF_VAR_... environment variables to provide
+[33m│[0m [0mcertain "global" settings to all configurations in your organization. To
+[33m│[0m [0mreduce the verbosity of these warnings, use the -compact-warnings option.
+[33m╵[0m[0m
+[33m╷[0m[0m
+[33m│[0m [0m[1m[33mWarning: [0m[0m[1mValue for undeclared variable[0m
+[33m│[0m [0m
+[33m│[0m [0m[0mThe root module does not declare a variable named "domain_name" but a value
+[33m│[0m [0mwas found in file "terraform.tfvars". If you meant to use this value, add a
+[33m│[0m [0m"variable" block to the configuration.
+[33m│[0m [0m
+[33m│[0m [0mTo silence these warnings, use TF_VAR_... environment variables to provide
+[33m│[0m [0mcertain "global" settings to all configurations in your organization. To
+[33m│[0m [0mreduce the verbosity of these warnings, use the -compact-warnings option.
+[33m╵[0m[0m
+[33m╷[0m[0m
+[33m│[0m [0m[1m[33mWarning: [0m[0m[1mValues for undeclared variables[0m
+[33m│[0m [0m
+[33m│[0m [0m[0mIn addition to the other similar warnings shown, 2 other variable(s)
+[33m│[0m [0mdefined without being declared.
+[33m╵[0m[0m
+[0m[1m[32m
+Apply complete! Resources: 0 added, 0 changed, 0 destroyed.[0m
+2026-07-22T16:37:28+09:00 [20260722-163703] [provision-dr] [INFO] STEP_SUCCESS step=terraform_apply_03-platform target=03-platform duration=4s
+2026-07-22T16:37:28+09:00 [20260722-163703] [provision-dr] [INFO] STEP_START step=terraform_init_04-eks-workloads target=04-eks-workloads
+[0m[1mInitializing the backend...[0m
+
+[0m[1mInitializing modules...[0m
+
+[0m[1mInitializing provider plugins...[0m
+- Reusing previous version of hashicorp/aws from the dependency lock file
+- Reusing previous version of hashicorp/helm from the dependency lock file
+- Using previously-installed hashicorp/helm v2.17.0
+- Using previously-installed hashicorp/aws v6.55.0
+
+
+[0m[1m[32mTerraform has been successfully initialized![0m[32m[0m
+[0m[32m
+You may now begin working with Terraform. Try running "terraform plan" to see
+any changes that are required for your infrastructure. All Terraform commands
+should now work.
+
+If you ever set or change modules or backend configuration for Terraform,
+rerun this command to reinitialize your working directory. If you forget, other
+commands will detect it and remind you to do so if necessary.[0m
+2026-07-22T16:37:32+09:00 [20260722-163703] [provision-dr] [INFO] STEP_SUCCESS step=terraform_init_04-eks-workloads target=04-eks-workloads duration=4s
+2026-07-22T16:37:32+09:00 [20260722-163703] [provision-dr] [INFO] STEP_START step=terraform_apply_04-eks-workloads target=04-eks-workloads
+[0m[1mdata.aws_eks_cluster_auth.cluster: Reading...[0m[0m
+[0m[1mdata.aws_eks_cluster.cluster: Reading...[0m[0m
+[0m[1mdata.aws_eks_cluster_auth.cluster: Read complete after 0s [id=hello-eks][0m
+[0m[1mdata.aws_eks_cluster.cluster: Read complete after 1s [id=hello-eks][0m
+[0m[1mmodule.keda.helm_release.keda: Refreshing state... [id=keda][0m
+
+[0m[1m[32mNo changes.[0m[1m Your infrastructure matches the configuration.[0m
+
+[0mTerraform has compared your real infrastructure against your configuration
+and found no differences, so no changes are needed.
+[0m[1m[32m
+Apply complete! Resources: 0 added, 0 changed, 0 destroyed.[0m
+2026-07-22T16:37:38+09:00 [20260722-163703] [provision-dr] [INFO] STEP_SUCCESS step=terraform_apply_04-eks-workloads target=04-eks-workloads duration=6s
+2026-07-22T16:37:38+09:00 [20260722-163703] [provision-dr] [INFO] STEP_START step=terraform_init_05-eks-autoscaling target=05-eks-autoscaling
+[0m[1mInitializing the backend...[0m
+
+[0m[1mInitializing modules...[0m
+
+[0m[1mInitializing provider plugins...[0m
+- terraform.io/builtin/terraform is built in to Terraform
+- Reusing previous version of hashicorp/aws from the dependency lock file
+- Reusing previous version of hashicorp/helm from the dependency lock file
+- Using previously-installed hashicorp/helm v2.17.0
+- Using previously-installed hashicorp/aws v5.100.0
+
+
+[0m[1m[32mTerraform has been successfully initialized![0m[32m[0m
+[0m[32m
+You may now begin working with Terraform. Try running "terraform plan" to see
+any changes that are required for your infrastructure. All Terraform commands
+should now work.
+
+If you ever set or change modules or backend configuration for Terraform,
+rerun this command to reinitialize your working directory. If you forget, other
+commands will detect it and remind you to do so if necessary.[0m
+2026-07-22T16:37:42+09:00 [20260722-163703] [provision-dr] [INFO] STEP_SUCCESS step=terraform_init_05-eks-autoscaling target=05-eks-autoscaling duration=4s
+2026-07-22T16:37:42+09:00 [20260722-163703] [provision-dr] [INFO] STEP_START step=terraform_apply_05-eks-autoscaling target=05-eks-autoscaling
+[0m[1mdata.terraform_remote_state.eks: Reading...[0m[0m
+[0m[1mdata.terraform_remote_state.eks: Read complete after 0s[0m
+[0m[1mmodule.karpenter_iam.data.aws_caller_identity.current: Reading...[0m[0m
+[0m[1mmodule.karpenter_iam.data.aws_partition.current: Reading...[0m[0m
+[0m[1mdata.aws_eks_cluster_auth.cluster: Reading...[0m[0m
+[0m[1mdata.aws_eks_cluster.cluster: Reading...[0m[0m
+[0m[1mmodule.karpenter_iam.data.aws_iam_policy_document.controller_assume_role[0]: Reading...[0m[0m
+[0m[1mmodule.karpenter_iam.aws_cloudwatch_event_rule.this["spot_interrupt"]: Refreshing state... [id=KarpenterSpotInterrupt-20260722070623503800000002][0m
+[0m[1mmodule.karpenter_iam.aws_cloudwatch_event_rule.this["instance_rebalance"]: Refreshing state... [id=KarpenterInstanceRebalance-20260722070623504100000004][0m
+[0m[1mmodule.karpenter_iam.data.aws_region.current: Reading...[0m[0m
+[0m[1mmodule.karpenter_iam.aws_sqs_queue.this[0]: Refreshing state... [id=https://sqs.ap-northeast-1.amazonaws.com/243197391442/Karpenter-hello-eks][0m
+[0m[1mmodule.karpenter_iam.data.aws_partition.current: Read complete after 0s [id=aws][0m
+[0m[1mmodule.karpenter_iam.data.aws_iam_policy_document.controller_assume_role[0]: Read complete after 0s [id=2816352693][0m
+[0m[1mmodule.karpenter_iam.aws_cloudwatch_event_rule.this["instance_state_change"]: Refreshing state... [id=KarpenterInstanceStateChange-20260722070623503700000001][0m
+[0m[1mdata.aws_eks_cluster_auth.cluster: Read complete after 0s [id=hello-eks][0m
+[0m[1mmodule.karpenter_iam.data.aws_region.current: Read complete after 0s [id=ap-northeast-1][0m
+[0m[1mmodule.karpenter_iam.data.aws_iam_policy_document.node_assume_role[0]: Reading...[0m[0m
+[0m[1mmodule.karpenter_iam.aws_cloudwatch_event_rule.this["health_event"]: Refreshing state... [id=KarpenterHealthEvent-20260722070623504100000003][0m
+[0m[1mmodule.karpenter_iam.data.aws_iam_policy_document.node_assume_role[0]: Read complete after 0s [id=2560088296][0m
+[0m[1mmodule.karpenter_iam.aws_iam_role.controller[0]: Refreshing state... [id=KarpenterController-20260722070623507100000005][0m
+[0m[1mmodule.karpenter_iam.aws_iam_role.node[0]: Refreshing state... [id=KarpenterNodeRole-eks-b][0m
+[0m[1mmodule.karpenter_iam.data.aws_caller_identity.current: Read complete after 0s [id=243197391442][0m
+[0m[1mmodule.karpenter_iam.data.aws_iam_policy_document.queue[0]: Reading...[0m[0m
+[0m[1mmodule.karpenter_iam.data.aws_iam_policy_document.queue[0]: Read complete after 0s [id=835854123][0m
+[0m[1mmodule.karpenter_iam.aws_sqs_queue_policy.this[0]: Refreshing state... [id=https://sqs.ap-northeast-1.amazonaws.com/243197391442/Karpenter-hello-eks][0m
+[0m[1mdata.aws_eks_cluster.cluster: Read complete after 0s [id=hello-eks][0m
+[0m[1mmodule.karpenter_iam.aws_cloudwatch_event_target.this["health_event"]: Refreshing state... [id=KarpenterHealthEvent-20260722070623504100000003-KarpenterInterruptionQueueTarget][0m
+[0m[1mmodule.karpenter_iam.aws_cloudwatch_event_target.this["instance_rebalance"]: Refreshing state... [id=KarpenterInstanceRebalance-20260722070623504100000004-KarpenterInterruptionQueueTarget][0m
+[0m[1mmodule.karpenter_iam.aws_cloudwatch_event_target.this["instance_state_change"]: Refreshing state... [id=KarpenterInstanceStateChange-20260722070623503700000001-KarpenterInterruptionQueueTarget][0m
+[0m[1mmodule.karpenter_iam.aws_cloudwatch_event_target.this["spot_interrupt"]: Refreshing state... [id=KarpenterSpotInterrupt-20260722070623503800000002-KarpenterInterruptionQueueTarget][0m
+[0m[1mdata.aws_ecrpublic_authorization_token.token: Reading...[0m[0m
+[0m[1mmodule.karpenter_iam.aws_eks_access_entry.node[0]: Refreshing state... [id=hello-eks:arn:aws:iam::243197391442:role/KarpenterNodeRole-eks-b][0m
+[0m[1mmodule.karpenter_iam.aws_iam_role_policy_attachment.node_additional["AmazonSSMManagedInstanceCore"]: Refreshing state... [id=KarpenterNodeRole-eks-b-20260722070625441300000007][0m
+[0m[1mmodule.karpenter_iam.aws_iam_role_policy_attachment.node["AmazonEKSWorkerNodePolicy"]: Refreshing state... [id=KarpenterNodeRole-eks-b-20260722070625681800000008][0m
+[0m[1mmodule.karpenter_iam.aws_iam_role_policy_attachment.node["AmazonEKS_CNI_Policy"]: Refreshing state... [id=KarpenterNodeRole-eks-b-20260722070625712600000009][0m
+[0m[1mmodule.karpenter_iam.aws_iam_role_policy_attachment.node["AmazonEC2ContainerRegistryReadOnly"]: Refreshing state... [id=KarpenterNodeRole-eks-b-20260722070625426200000006][0m
+[0m[1mmodule.karpenter_iam.data.aws_iam_policy_document.v033[0]: Reading...[0m[0m
+[0m[1mmodule.karpenter_iam.data.aws_iam_policy_document.v1[0]: Reading...[0m[0m
+[0m[1mmodule.karpenter_iam.data.aws_iam_policy_document.v033[0]: Read complete after 0s [id=2250212523][0m
+[0m[1mmodule.karpenter_iam.data.aws_iam_policy_document.v1[0]: Read complete after 0s [id=190981066][0m
+[0m[1mmodule.karpenter_iam.data.aws_iam_policy_document.controller[0]: Reading...[0m[0m
+[0m[1mmodule.karpenter_iam.data.aws_iam_policy_document.controller[0]: Read complete after 0s [id=2250212523][0m
+[0m[1mmodule.karpenter_iam.aws_iam_policy.controller[0]: Refreshing state... [id=arn:aws:iam::243197391442:policy/KarpenterController-2026072207064938870000000a][0m
+[0m[1mdata.aws_ecrpublic_authorization_token.token: Read complete after 1s [id=us-east-1][0m
+[0m[1mmodule.karpenter.helm_release.karpenter: Refreshing state... [id=karpenter][0m
+[0m[1mmodule.karpenter_iam.aws_iam_role_policy_attachment.controller[0]: Refreshing state... [id=KarpenterController-20260722070623507100000005-2026072207065051400000000b][0m
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  [33m~[0m update in-place[0m
+
+Terraform will perform the following actions:
+
+[1m  # module.karpenter.helm_release.karpenter[0m will be updated in-place
+[0m  [33m~[0m[0m resource "helm_release" "karpenter" {
+        id                         = "karpenter"
+        name                       = "karpenter"
+      [33m~[0m[0m repository_password        = (sensitive value)
+        [90m# (29 unchanged attributes hidden)[0m[0m
+    }
+
+[1mPlan:[0m [0m0 to add, 1 to change, 0 to destroy.
+[0m[1mmodule.karpenter.helm_release.karpenter: Modifying... [id=karpenter][0m[0m
+[0m[1mmodule.karpenter.helm_release.karpenter: Still modifying... [id=karpenter, 00m10s elapsed][0m[0m
+[0m[1mmodule.karpenter.helm_release.karpenter: Modifications complete after 14s [id=karpenter][0m
+[33m╷[0m[0m
+[33m│[0m [0m[1m[33mWarning: [0m[0m[1mDeprecated value used[0m
+[33m│[0m [0m
+[33m│[0m [0m[0m  on .terraform/modules/karpenter_iam/modules/karpenter/outputs.tf line 45, in output "event_rules":
+[33m│[0m [0m  45:   value       = [4maws_cloudwatch_event_rule.this[0m[0m
+[33m│[0m [0m
+[33m│[0m [0m  The deprecation originates from module.karpenter_iam.aws_cloudwatch_event_rule.this["health_event"].is_enabled
+[33m│[0m [0m
+[33m│[0m [0mDeprecated resource attribute "is_enabled" used. Refer to the provider
+[33m│[0m [0mdocumentation for details.
+[33m│[0m [0m
+[33m│[0m [0m(and 3 more similar warnings elsewhere)
+[33m╵[0m[0m
+[0m[1m[32m
+Apply complete! Resources: 0 added, 1 changed, 0 destroyed.[0m
+[0m[1m[32m
+Outputs:
+
+[0mkarpenter_controller_role_arn = "arn:aws:iam::243197391442:role/KarpenterController-20260722070623507100000005"
+karpenter_node_iam_role_name = "KarpenterNodeRole-eks-b"
+2026-07-22T16:38:09+09:00 [20260722-163703] [provision-dr] [INFO] STEP_SUCCESS step=terraform_apply_05-eks-autoscaling target=05-eks-autoscaling duration=27s
+2026-07-22T16:38:09+09:00 [20260722-163703] [provision-dr] [INFO] STEP_START step=wait_argocd_cluster_secret target=onprem-argocd
+2026-07-22T16:38:09+09:00 [20260722-163703] [provision-dr] [INFO] Argo CD Cluster Secret 확인 name=cluster-eks-b
+2026-07-22T16:38:09+09:00 [20260722-163703] [provision-dr] [INFO] Argo CD Cluster Secret 확인 name=cluster-eks-b
+2026-07-22T16:38:09+09:00 [20260722-163703] [provision-dr] [INFO] STEP_SUCCESS step=wait_argocd_cluster_secret target=onprem-argocd duration=0s
+
+===== Argo CD State: before-applicationset-apply =====
+
+--- Cluster Secrets ---
+NAME             TYPE     DATA   AGE     LABELS
+cluster-eks-a    Opaque   3      7h58m   argocd.argoproj.io/secret-type=cluster,cloud-provider=aws,environment=eks-a,status=active
+cluster-eks-b    Opaque   3      3h12m   argocd.argoproj.io/secret-type=cluster,cloud-provider=aws,environment=eks-b,status=active
+cluster-onprem   Opaque   3      2d1h    argocd.argoproj.io/secret-type=cluster,cloud-provider=baremetal,environment=onprem,status=active-standby
+
+--- ApplicationSets ---
+NAME                   AGE
+jit-hub-app-appset     2d1h
+jit-hub-infra-appset   2d1h
+
+--- Applications ---
+NAME                      DESTINATION   SYNC        HEALTH
+eks-a-jit-hub-app         <none>        Synced      Degraded
+eks-a-monitoring-stack    <none>        Synced      Healthy
+eks-a-ops                 <none>        OutOfSync   Missing
+eks-a-postgres-gateway    <none>        Synced      Healthy
+eks-b-jit-hub-app         <none>        Synced      Healthy
+eks-b-monitoring-stack    <none>        Synced      Healthy
+eks-b-ops                 <none>        OutOfSync   Missing
+eks-b-postgres-gateway    <none>        Synced      Healthy
+onprem-jit-hub-app        <none>        OutOfSync   Progressing
+onprem-monitoring-stack   <none>        OutOfSync   Progressing
+onprem-ops                <none>        Unknown     Healthy
+onprem-postgres-gateway   <none>        Synced      Healthy
+
+2026-07-22T16:38:10+09:00 [20260722-163703] [provision-dr] [INFO] STEP_START step=apply_applicationsets target=onprem-argocd
+2026-07-22T16:38:10+09:00 [20260722-163703] [provision-dr] [INFO] ApplicationSet 적용 context=kubernetes-admin@kubernetes file=/home/user/jit-hub-infra/gitops/argocd/applicationsets/infra-applicationset.yaml
+2026-07-22T16:38:10+09:00 [20260722-163703] [provision-dr] [INFO] ApplicationSet 적용 context=kubernetes-admin@kubernetes file=/home/user/jit-hub-infra/gitops/argocd/applicationsets/infra-applicationset.yaml
+applicationset.argoproj.io/jit-hub-infra-appset unchanged
+2026-07-22T16:38:11+09:00 [20260722-163703] [provision-dr] [INFO] ApplicationSet 적용 context=kubernetes-admin@kubernetes file=/home/user/jit-hub-infra/gitops/argocd/applicationsets/app-applicationset.yaml
+2026-07-22T16:38:11+09:00 [20260722-163703] [provision-dr] [INFO] ApplicationSet 적용 context=kubernetes-admin@kubernetes file=/home/user/jit-hub-infra/gitops/argocd/applicationsets/app-applicationset.yaml
+applicationset.argoproj.io/jit-hub-app-appset unchanged
+2026-07-22T16:38:11+09:00 [20260722-163703] [provision-dr] [INFO] STEP_SUCCESS step=apply_applicationsets target=onprem-argocd duration=1s
+
+===== Argo CD State: after-applicationset-apply =====
+
+--- Cluster Secrets ---
+NAME             TYPE     DATA   AGE     LABELS
+cluster-eks-a    Opaque   3      7h58m   argocd.argoproj.io/secret-type=cluster,cloud-provider=aws,environment=eks-a,status=active
+cluster-eks-b    Opaque   3      3h12m   argocd.argoproj.io/secret-type=cluster,cloud-provider=aws,environment=eks-b,status=active
+cluster-onprem   Opaque   3      2d1h    argocd.argoproj.io/secret-type=cluster,cloud-provider=baremetal,environment=onprem,status=active-standby
+
+--- ApplicationSets ---
+NAME                   AGE
+jit-hub-app-appset     2d1h
+jit-hub-infra-appset   2d1h
+
+--- Applications ---
+NAME                      DESTINATION   SYNC        HEALTH
+eks-a-jit-hub-app         <none>        Synced      Degraded
+eks-a-monitoring-stack    <none>        Synced      Healthy
+eks-a-ops                 <none>        OutOfSync   Missing
+eks-a-postgres-gateway    <none>        Synced      Healthy
+eks-b-jit-hub-app         <none>        Synced      Healthy
+eks-b-monitoring-stack    <none>        Synced      Healthy
+eks-b-ops                 <none>        OutOfSync   Missing
+eks-b-postgres-gateway    <none>        Synced      Healthy
+onprem-jit-hub-app        <none>        OutOfSync   Progressing
+onprem-monitoring-stack   <none>        OutOfSync   Progressing
+onprem-ops                <none>        Unknown     Healthy
+onprem-postgres-gateway   <none>        Synced      Healthy
+
+2026-07-22T16:38:12+09:00 [20260722-163703] [provision-dr] [INFO] STEP_START step=wait_eks_b_gitops_applications target=eks-b
+2026-07-22T16:38:12+09:00 [20260722-163703] [provision-dr] [INFO] EKS-B GitOps 상태 total=3 not_ready=0 attempt=1/180
+2026-07-22T16:38:12+09:00 [20260722-163703] [provision-dr] [INFO] EKS-B GitOps 상태 total=3 not_ready=0 attempt=1/180
+eks-b-jit-hub-app|https://BB2D237724A85A11E64D9DED06492D5D.gr7.ap-northeast-1.eks.amazonaws.com|Synced|Healthy
+eks-b-monitoring-stack|https://BB2D237724A85A11E64D9DED06492D5D.gr7.ap-northeast-1.eks.amazonaws.com|Synced|Healthy
+eks-b-postgres-gateway|https://BB2D237724A85A11E64D9DED06492D5D.gr7.ap-northeast-1.eks.amazonaws.com|Synced|Healthy
+eks-b-jit-hub-app|https://BB2D237724A85A11E64D9DED06492D5D.gr7.ap-northeast-1.eks.amazonaws.com|Synced|Healthy
+eks-b-monitoring-stack|https://BB2D237724A85A11E64D9DED06492D5D.gr7.ap-northeast-1.eks.amazonaws.com|Synced|Healthy
+eks-b-postgres-gateway|https://BB2D237724A85A11E64D9DED06492D5D.gr7.ap-northeast-1.eks.amazonaws.com|Synced|Healthy
+2026-07-22T16:38:12+09:00 [20260722-163703] [provision-dr] [INFO] EKS-B 필수 Argo CD Application Synced/Healthy
+2026-07-22T16:38:12+09:00 [20260722-163703] [provision-dr] [INFO] EKS-B 필수 Argo CD Application Synced/Healthy
+2026-07-22T16:38:12+09:00 [20260722-163703] [provision-dr] [INFO] STEP_SUCCESS step=wait_eks_b_gitops_applications target=eks-b duration=0s
+2026-07-22T16:38:12+09:00 [20260722-163703] [provision-dr] [INFO] STEP_START step=wait_eks_b_app_pods target=eks-b
+2026-07-22T16:38:13+09:00 [20260722-163703] [provision-dr] [ERROR] 애플리케이션 Pod가 없습니다. selector=app=gateway
+2026-07-22T16:38:13+09:00 [20260722-163703] [provision-dr] [ERROR] 애플리케이션 Pod가 없습니다. selector=app=gateway
+2026-07-22T16:38:13+09:00 [20260722-163703] [provision-dr] [ERROR] STEP_FAILED step=wait_eks_b_app_pods target=eks-b duration=1s exit_code=1
+2026-07-22T16:38:13+09:00 [20260722-163703] [provision-dr] [INFO] SCRIPT_END status=FAILED duration=70s message=EKS-B 애플리케이션 Pod Ready 실패
