@@ -9,13 +9,13 @@ gateway:
   replicaCount: 1
   image:
     repository: "harbor.zeoxixx.cloud/jit-hub/jit-hub-gateway"
-    tag: "seed"
+    tag: "v1"
 
 auth:
   replicaCount: 1
   image:
     repository: "harbor.zeoxixx.cloud/jit-hub/auth-service"
-    tag: "seed"
+    tag: "v1"
   db:
     enabled: true
     loadBalancerIP: "172.16.8.47"
@@ -31,7 +31,7 @@ weather:
   replicaCount: 1
   image:
     repository: "harbor.zeoxixx.cloud/jit-hub/weather-service"
-    tag: "seed"
+    tag: "v1"
   db:
     enabled: true
     loadBalancerIP: "172.16.8.48"
@@ -47,7 +47,7 @@ traffic:
   replicaCount: 1
   image:
     repository: "harbor.zeoxixx.cloud/jit-hub/traffic-service"
-    tag: "seed"
+    tag: "v1"
   db:
     enabled: true
     loadBalancerIP: "172.16.8.49"
@@ -63,7 +63,7 @@ tourist:
   replicaCount: 1
   image:
     repository: "harbor.zeoxixx.cloud/jit-hub/tourist-service"
-    tag: "seed"
+    tag: "v1"
   db:
     enabled: true
     loadBalancerIP: "172.16.8.50"
