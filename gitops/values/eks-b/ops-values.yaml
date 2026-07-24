@@ -4,15 +4,15 @@ clusterName: eks-b
 
 keda:
   enabled: true
+  namespace: jit-hub
   minReplicaCount: 1  # DR 대기이므로 1개
   maxReplicaCount: 10
-  triggers:
-    - type: prometheus
-      metadata:
-        serverAddress: http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local:9090
-        metricName: http_requests_total
-        query: sum(rate(http_requests_total[2m]))
-        threshold: '50'
+  cooldownPeriod: 300
+  threshold: '50'
+  serverAddress: http://eks-b-monitoring-stack-kub-prometheus.monitoring.svc.cluster.local:9090   # eks-b 경로 확인 필요
+  fallback:
+    failureThreshold: 3
+    replicas: 3
 
 karpenter:
   enabled: true

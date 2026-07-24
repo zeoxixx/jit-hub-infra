@@ -22,3 +22,7 @@ tourist:
   db:
     enabled: true
     host: "postgres-gateway"
+
+# sLLM 분석 파이프라인(FastAPI+Ollama+poller)은 onprem에만 배포 (7/15 팀 결정)
+sllm:
+  enabled: false

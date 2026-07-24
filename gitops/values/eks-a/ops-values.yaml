@@ -4,15 +4,17 @@ clusterName: eks-a
 
 keda:
   enabled: true
+  namespace: jit-hub                 # ScaledObject 생성 위치 (앱과 동일해야 함)
   minReplicaCount: 3
   maxReplicaCount: 10
-  triggers:
-    - type: prometheus
-      metadata:
-        serverAddress: http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local:9090
-        metricName: http_requests_total
-        query: sum(rate(http_requests_total[2m]))
-        threshold: '50'
+  cooldownPeriod: 300
+  threshold: '50'
+  # ArgoCD 배포 시 릴리스명이 접두사로 붙어 클러스터마다 이름이 달라짐
+  serverAddress: http://eks-a-monitoring-stack-kub-prometheus.monitoring.svc.cluster.local:9090
+  fallback:
+    failureThreshold: 3
+    replicas: 3
+
 
 karpenter:
   enabled: true
