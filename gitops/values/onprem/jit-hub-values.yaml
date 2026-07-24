@@ -3,19 +3,17 @@
 
 ingressRule:
   namespace: "jit-hub"
-  host: "zeoxixx.cloud"
-
+  host: "ccmall.shop"
 gateway:
   replicaCount: 1
   image:
-    repository: "harbor.zeoxixx.cloud/jit-hub/jit-hub-gateway"
-    tag: "v1"
-
+    repository: "harbor.ccmall.shop/jit-hub/jit-hub-gateway"
+    tag: "79d959256720"
 auth:
   replicaCount: 1
   image:
-    repository: "harbor.zeoxixx.cloud/jit-hub/auth-service"
-    tag: "v1"
+    repository: "harbor.ccmall.shop/jit-hub/auth-service"
+    tag: "seed"
   db:
     enabled: true
     loadBalancerIP: "172.16.8.47"
@@ -26,12 +24,11 @@ auth:
       nfs:
         server: "172.16.8.203"
         path: "/nfs/shared/jithub-authdb"
-
 weather:
   replicaCount: 1
   image:
-    repository: "harbor.zeoxixx.cloud/jit-hub/weather-service"
-    tag: "v1"
+    repository: "harbor.ccmall.shop/jit-hub/weather-service"
+    tag: "seed"
   db:
     enabled: true
     loadBalancerIP: "172.16.8.48"
@@ -42,12 +39,11 @@ weather:
       nfs:
         server: "172.16.8.203"
         path: "/nfs/shared/jithub-weatherdb"
-
 traffic:
   replicaCount: 1
   image:
-    repository: "harbor.zeoxixx.cloud/jit-hub/traffic-service"
-    tag: "v1"
+    repository: "harbor.ccmall.shop/jit-hub/traffic-service"
+    tag: "seed"
   db:
     enabled: true
     loadBalancerIP: "172.16.8.49"
@@ -58,12 +54,11 @@ traffic:
       nfs:
         server: "172.16.8.203"
         path: "/nfs/shared/jithub-trafficdb"
-
 tourist:
   replicaCount: 1
   image:
-    repository: "harbor.zeoxixx.cloud/jit-hub/tourist-service"
-    tag: "v1"
+    repository: "harbor.ccmall.shop/jit-hub/tourist-service"
+    tag: "seed"
   db:
     enabled: true
     loadBalancerIP: "172.16.8.50"
