@@ -113,6 +113,6 @@ promtail:
 # EKS 클러스터들의 remote_write/promtail을 받는 Ingress
 ingestIngress:
   enabled: true
-  domain: ccmall.shop # 도메인
+  domain: zeoxixx.cloud # 도메인
   prometheusServiceName: onprem-monitoring-stack-ku-prometheus
   lokiServiceName: onprem-monitoring-stack-loki

@@ -1,11 +1,11 @@
 # gitops/values/common/jit-hub-common.yaml
 global:
-  imageRegistry: 172.16.8.200 # 온프레미스 Harbor 주소
+  imageRegistry: 192.168.64.222 # 온프레미스 Harbor 주소
   projectName: jit-hub
 
 jit-hub-app:
   image:
-    repository: 172.16.8.200/jit-hub/app
+    repository: 192.168.64.222/jit-hub/app
     tag: v1 # CI 파이프라인에서 이미지 갱신 시 업데이트 예정
     pullPolicy: IfNotPresent
   service:
