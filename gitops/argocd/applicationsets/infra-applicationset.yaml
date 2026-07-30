@@ -24,6 +24,8 @@ spec:
                 #   namespace: kube-system
                 - chart: monitoring-stack
                   namespace: monitoring
+                - chart: alert-loki-bridge
+                  namespace: monitoring
                 - chart: postgres-gateway
                   namespace: jit-hub
                 - chart: ops
