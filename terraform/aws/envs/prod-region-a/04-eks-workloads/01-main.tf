@@ -7,6 +7,10 @@ terraform {
   }
 }
 
+provider "aws" {
+  region = "ap-northeast-2"
+}
+
 provider "helm" {
   kubernetes {
     host                   = data.aws_eks_cluster.cluster.endpoint

@@ -67,7 +67,7 @@ APP_HEALTH_PATH="${APP_HEALTH_PATH:-/health}"
 APP_LABEL_SELECTOR="${APP_LABEL_SELECTOR:-app=gateway}"
 
 # 반드시 실제 외부 도메인으로 변경
-EXTERNAL_HEALTH_URL="${EXTERNAL_HEALTH_URL:-https://ccmall.shop/health}"
+EXTERNAL_HEALTH_URL="${EXTERNAL_HEALTH_URL:-https://zeoxixx.cloud/health}"
 
 
 # =========================================================

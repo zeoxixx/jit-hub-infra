@@ -36,9 +36,9 @@ spec:
     spec:
       project: jit-hub-project
       source:
-        repoURL: 'https://github.com/hacksungboo/jit-hub-infra'
+        repoURL: 'https://github.com/zeoxixx/jit-hub-infra'
         #targetRevision: HEAD
-        targetRevision: test/total # 통합 테스트용 (26.07.24 1600)
+        targetRevision: test/0818 # 통합 테스트용 (26.07.24 1600)
         # charts/cloudflared, charts/monitoring-stack, charts/ops에 각각 대응
         path: charts/{{chart}}
         helm:

@@ -55,18 +55,27 @@ spec:
                 - |
                   set -e
 
-                  # 최대 30초 대기 (tailscale0 인터페이스 생성 대기)
+                  # 최대 30초 동안 tailscale0 생성 대기
                   for i in $(seq 1 60); do
-                    ip link show tailscale0 >/dev/null 2>&1 && break
+                    if ip link show tailscale0 >/dev/null 2>&1; then
+                      break
+                    fi
                     sleep 0.5
                   done
 
-                  # tailscale이 만든 라우팅 테이블(52)로 온프렘 대역을 우선 조회 (중복 시 스킵)
-                  ip rule show | grep -q "172.16.8.0/24" || ip rule add to 172.16.8.0/24 lookup 52 pref 100
+                  # 30초 내 생성되지 않았으면 postStart 실패 처리
+                  ip link show tailscale0 >/dev/null 2>&1
 
-                  # tailscale0로 나가는 트래픽 SNAT (중복 방지 -C 검증 후 삽입)
-                  iptables -t nat -C POSTROUTING -o tailscale0 -j MASQUERADE >/dev/null 2>&1 \
-                    || iptables -t nat -A POSTROUTING -o tailscale0 -j MASQUERADE
+                  # 목적지별로 Tailscale 라우팅 테이블(52) 우선 조회
+                  ip rule show | grep -q "192.168.64.0/24" || \
+                    ip rule add to 192.168.64.0/24 lookup 52 pref 100
+
+                  ip rule show | grep -q "172.16.8.0/24" || \
+                    ip rule add to 172.16.8.0/24 lookup 52 pref 101
+
+                  # tailscale0로 나가는 트래픽 SNAT
+                  iptables -t nat -C POSTROUTING -o tailscale0 -j MASQUERADE >/dev/null 2>&1 || \
+                    iptables -t nat -A POSTROUTING -o tailscale0 -j MASQUERADE
 
                   echo "Routing configured successfully" > /tmp/routing-ready
         readinessProbe:
@@ -76,6 +85,7 @@ spec:
             - -c
             - |
               # 라우팅 룰과 iptables 룰이 실제로 적용되었는지 둘 다 검증
+              ip rule show | grep -q "192.168.64.0/24" && \
               ip rule show | grep -q "172.16.8.0/24" && \
               iptables -t nat -C POSTROUTING -o tailscale0 -j MASQUERADE >/dev/null 2>&1
           initialDelaySeconds: 5
