@@ -14,7 +14,7 @@ auth:
   enabled: true
   image:
     repository: harbor.zeoxixx.cloud/jit-hub/auth-service # 개인 도메인 수정 필요
-    tag: seed
+    tag: v1
   replicaCount: 1
   service:
     port: 8001
@@ -22,7 +22,7 @@ gateway:
   enabled: true
   image:
     repository: harbor.zeoxixx.cloud/jit-hub/jit-hub-gateway # 개인 도메인 수정 필요
-    tag: seed
+    tag: v1
   replicaCount: 1
   service:
     port: 80
@@ -45,7 +45,7 @@ tourist:
   enabled: true
   image:
     repository: harbor.zeoxixx.cloud/jit-hub/tourist-service # 개인 도메인 수정 필요
-    tag: seed
+    tag: v1
   replicaCount: 1
   service:
     port: 8004
@@ -65,7 +65,7 @@ traffic:
   enabled: true
   image:
     repository: harbor.zeoxixx.cloud/jit-hub/traffic-service # 개인 도메인 수정 필요
-    tag: seed
+    tag: v1
   replicaCount: 1
   service:
     port: 8003
@@ -85,7 +85,7 @@ weather:
   enabled: true
   image:
     repository: harbor.zeoxixx.cloud/jit-hub/weather-service # 개인 도메인 수정 필요
-    tag: seed
+    tag: v1
   replicaCount: 1
   service:
     port: 8002
