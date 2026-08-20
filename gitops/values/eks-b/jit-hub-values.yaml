@@ -8,12 +8,12 @@ gateway:
   replicaCount: 0
   image:
     repository: "harbor.zeoxixx.cloud/jit-hub/jit-hub-gateway"
-    tag: "seed"
+    tag: "v1"
 auth:
   replicaCount: 0
   image:
     repository: "harbor.zeoxixx.cloud/jit-hub/auth-service"
-    tag: "seed"
+    tag: "v1"
   db:
     enabled: false
     host: "postgres-gateway"
@@ -21,7 +21,7 @@ weather:
   replicaCount: 0
   image:
     repository: "harbor.zeoxixx.cloud/jit-hub/weather-service"
-    tag: "seed"
+    tag: "v1"
   db:
     enabled: false
     host: "postgres-gateway"
@@ -29,7 +29,7 @@ traffic:
   replicaCount: 0
   image:
     repository: "harbor.zeoxixx.cloud/jit-hub/traffic-service"
-    tag: "seed"
+    tag: "v1"
   db:
     enabled: false
     host: "postgres-gateway"
@@ -37,7 +37,7 @@ tourist:
   replicaCount: 0
   image:
     repository: "harbor.zeoxixx.cloud/jit-hub/tourist-service"
-    tag: "seed"
+    tag: "v1"
   db:
     enabled: false
     host: "postgres-gateway"

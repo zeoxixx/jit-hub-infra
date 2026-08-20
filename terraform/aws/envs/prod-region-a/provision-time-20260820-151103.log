@@ -1,45 +1,45 @@
 =================================
  Terraform Deployment Start
- Start: 2026-08-18 16:42:16
+ Start: 2026-08-20 15:11:03
 =================================
 
 =================================
  Applying 01-network
 =================================
 ---------------------------------
-01-network           INIT 00m 02s | PLAN 00m 03s | APPLY 00m 02s | TOTAL 00m 07s
+01-network           INIT 00m 02s | PLAN 00m 04s | APPLY 00m 02s | TOTAL 00m 08s
 ---------------------------------
 
 =================================
  Applying 02-eks
 =================================
 ---------------------------------
-02-eks               INIT 00m 02s | PLAN 00m 05s | APPLY 00m 02s | TOTAL 00m 09s
+02-eks               INIT 00m 02s | PLAN 00m 05s | APPLY 00m 03s | TOTAL 00m 10s
 ---------------------------------
 
 =================================
  Applying 03-platform
 =================================
 ---------------------------------
-03-platform          INIT 00m 03s | PLAN 00m 06s | APPLY 00m 02s | TOTAL 00m 11s
+03-platform          INIT 00m 02s | PLAN 00m 05s | APPLY 00m 02s | TOTAL 00m 09s
 ---------------------------------
 
 =================================
  Applying 04-eks-workloads
 =================================
 ---------------------------------
-04-eks-workloads     INIT 00m 04s | PLAN 00m 04s | APPLY 00m 03s | TOTAL 00m 11s
+04-eks-workloads     INIT 00m 03s | PLAN 00m 04s | APPLY 00m 02s | TOTAL 00m 09s
 ---------------------------------
 
 =================================
  Applying 05-eks-autoscaling
 =================================
 ---------------------------------
-05-eks-autoscaling   INIT 00m 02s | PLAN 00m 07s | APPLY 00m 11s | TOTAL 00m 20s
+05-eks-autoscaling   INIT 00m 02s | PLAN 00m 07s | APPLY 00m 10s | TOTAL 00m 19s
 ---------------------------------
 
 =================================
  Terraform Deployment Complete
- End: 2026-08-18 16:43:14
- Total Provisioning Time: 00m 58s
+ End: 2026-08-20 15:11:58
+ Total Provisioning Time: 00m 55s
 =================================
